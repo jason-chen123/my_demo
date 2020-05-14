@@ -24,6 +24,7 @@ export default {
     },
     methods:{
         sendMsg(){
+
             this.$axios.post('http://127.0.0.1:4002/login',{
                 params:{
                     uname:this.uname,
@@ -38,6 +39,11 @@ export default {
                 }else{
                     alert('账号或密码错误')
                 }
+            }).catch(()=>{
+                 // 没服务器时直接进入
+                alert('并未开启服务器以及数据库，以默认账号登陆')
+                 this.$store.commit('login');
+                 this.$router.push('/home')
             })
         }
     }
